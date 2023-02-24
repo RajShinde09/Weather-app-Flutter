@@ -19,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(child: Container()),
-          Image.network('https://www.shutterstock.com/image-vector/man-key-near-computer-account-260nw-1499141258.jpg'),
+          Image.network('https://o.remove.bg/downloads/c263957f-4e5b-4fc1-accb-1845f32643c7/138-1387775_login-to-do-whatever-you-want-login-icon-removebg-preview.png'),
           Password(text: 'E-Mail',isPassword: false,),
           Password(text: 'Password',isPassword: true,),
           ClipRRect(
