@@ -3,6 +3,7 @@ import '../Constants.dart' as constant;
 import '../textfield.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../Network/Location.dart';
 
 import 'mainscreen.dart';
 
@@ -16,7 +17,18 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   late String email, password;
-  int myvar = 1;
+  int myvar = 0;
+
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    apiCall();
+  }
+  void apiCall() async{
+   var location = await determinePosition();
+   myvar = await constant.apiInstance.getLocation(location.latitude.toString(),location.latitude.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(child: Container()),
-          Image.network('https://o.remove.bg/downloads/c263957f-4e5b-4fc1-accb-1845f32643c7/138-1387775_login-to-do-whatever-you-want-login-icon-removebg-preview.png'),
+          Image.network('https://www.simplilearn.com/ice9/free_resources_article_thumb/what_is_image_Processing.jpg'),
           Password(text: 'E-Mail',isPassword: false, onChanged: (value ) {
             email = value;
           },),

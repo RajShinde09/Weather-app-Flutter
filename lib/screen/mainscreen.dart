@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Constants.dart' as constants;
+import 'package:untitled/Constants.dart' as constants;
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -18,69 +18,56 @@ class _MainScreenState extends State<MainScreen> {
         alignment: Alignment.center,
         children: [
           Positioned(
-            top: size.height * 0.1,
+            top: size.height*0.1,
             child: Text(
-              'Location',
+              '${constants.apiInstance.city}',
               style: TextStyle(
-                color: constants.textPrimary,
-                decoration: TextDecoration.none,
+                  color: constants.textPrimary,
+                  decoration: TextDecoration.none
               ),
-            )),
-
+            ),
+          ),
           Positioned(
-            top: size.height * 0.15,
-            child: Text(
-              'Date',
-              style: TextStyle(
-                color: constants.textPrimary,
-                decoration: TextDecoration.none,
-                fontSize: 30,
-              ),
-            )),
-
-          Positioned(
-              top: size.height * 0.3,
-              child: Container(
-            width: size.width * 8.0,
-            height: size.height * 0.23,
-            color: Colors.greenAccent,
-          )),
-
-          Positioned(
-            top: size.height*0.6,
+              top: size.height*0.16,
               child: Text(
-            '23',
+                '${constants.apiInstance.date}',
                 style: TextStyle(
-                  fontSize: size.width*0.16,
+                  color: constants.textPrimary,
+                  decoration: TextDecoration.none,
+                  fontSize: 30,
+                ),
+              )),
+          Positioned(
+            top: size.height*0.3,
+            child: SizedBox(
+              width: size.width*0.6,
+              height: size.height*0.23,
+              child: Image.network('http://openweathermap.org/img/wn/${constants.apiInstance.icon}@2x.png',
+              scale: 0.2,),
+            )
+          ),
+          Positioned(
+              top : size.height*0.6,
+              child: Text(
+                '${constants.apiInstance.temp}°c',
+                style: TextStyle(
+                  fontSize: size.width * 0.16,
                   decoration: TextDecoration.none,
                   color: constants.textPrimary,
                 ),
-          )),
-
+              )),
           Positioned(
-              bottom: size.height*0.03,
-              child:Row(
+              bottom: size.height *0.03,
+              child: Row(
                 children: [
-                  extraInfo(
-                    size: size,
-                  icon: Icons.thermostat,
-                  name: 'MaxTemp',
-                  value: '23°c',
-                  ),
-                  extraInfo(
-                    size: size,
-                    icon: Icons.air_outlined,
-                    name: 'WindSpeed',
-                    value: '2m/s',
-                  ),
-                  extraInfo(
-                    size: size,
-                    icon: Icons.percent,
-                    name: 'Humidity',
-                    value: '23%',
-                  ),
+                  extraInfo(size: size, icon: Icons.thermostat, name: 'Maxtemp', value: '${constants.apiInstance.maxTemp}°c',),
+                  extraInfo(size: size, icon: Icons.air_outlined, name: 'Windspeed', value: '${constants.apiInstance.airSpeed}m/s',),
+                  extraInfo(size: size, icon: Icons.percent, name: 'Humidity', value: '${constants.apiInstance.humidity}%',)
+
                 ],
-              ) )
+              ))
+
+
         ],
       ),
     );
@@ -89,7 +76,8 @@ class _MainScreenState extends State<MainScreen> {
 
 class extraInfo extends StatelessWidget {
   const extraInfo({
-    super.key, required this.size, required this.icon, required this.name, required this.value,
+    super.key,
+    required this.size, required this.icon, required this.name, required this.value,
   });
 
   final Size size;
@@ -100,26 +88,28 @@ class extraInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: size.width * 0.3,
       child: Column(
         children: [
           Icon(
             icon,
           ),
           Text(
-              'MaxTemp',
-          style: TextStyle(
-            color: constants.textPrimary,
-            decoration: TextDecoration.none,
-          )
-          ),
-          Text(
-              '23',
+            name,
             style: TextStyle(
-              fontSize: 25,
               color: constants.textPrimary,
               decoration: TextDecoration.none,
+              fontSize: 20,
             ),
-          )
+          ),
+          Text(
+              value,
+              style: TextStyle(
+                color: constants.textPrimary,
+                decoration: TextDecoration.none,
+                fontSize: 25,
+              )
+          ),
         ],
       ),
     );
