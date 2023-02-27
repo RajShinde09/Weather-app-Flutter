@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import '../Constants.dart' as constant;
 import '../textfield.dart';
@@ -18,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   late String email, password;
-  int myvar = 0;
+  int myvar = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,18 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   )
                 ),
                 onPressed: () async {
-                  try{
-                    final newUser =
-                        await _auth.signInWithEmailAndPassword(
-                        email: email, password: password);
-
-                    if(newUser.user != null && myvar != 0){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));;
-                    }
-                  } catch (e){
-                    debugPrint('$e');
-                  }
+                //   try{
+                //     final newUser =
+                //         await _auth.signInWithEmailAndPassword(
+                //         email: email, password: password);
+                //
+                //     if(newUser.user != null && myvar != 0){
+                //       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
+                //     }
+                //   } catch (e){
+                //     debugPrint('$e');
+                //   }
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainScreen()));
                 },
+
                 child: Text(
                   'Login',
                 style: TextStyle(
